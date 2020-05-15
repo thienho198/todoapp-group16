@@ -1,0 +1,7 @@
+.inputAreaMain {
+	display: flex;
+	flex-direction: column;
+	margin-top: 15%;
+	width: 35%;
+	border-left: 1px solid gray;
+}
