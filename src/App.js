@@ -3,13 +3,54 @@ import InputArea from './components/inputArea/components/inputArea';
 import ListArea from './components/listArea/listArea';
 import classes from './App.module.css';
 
-function App() {
-	return (
-		<div className={classes.Layout}>
-			<ListArea />
-			<InputArea />
-		</div>
-	);
+class App extends React.Component {
+	//#region constructor
+	constructor(props) {
+		super(props);
+		this.state = {
+			listTasks: [],
+			filterKey: ''
+		};
+	}
+	//#region functions
+	addTaskToList(title, content) {
+		const task = { title: title, content: content };
+		this.setState((prevState) => {
+			const updateListTask = [ ...prevState.listTasks ];
+			updateListTask.unshift(task);
+			return {
+				listTasks: updateListTask
+			};
+		});
+	}
+	changeFilterKey = (text) => {
+		this.setState({
+			filterKey: text.target.value
+		});
+	};
+	//#region render
+	render() {
+		const listTasksRender =
+			this.state.filterKey === ''
+				? this.state.listTasks
+				: this.state.listTasks.filter((item) => item.title === this.state.filterKey);
+		return (
+			<div className={classes.Layout}>
+				<ListArea
+					listTasks={listTasksRender}
+					changeFilterKey={(text) => {
+						this.changeFilterKey(text);
+					}}
+					filterKey={this.state.filterKey}
+				/>
+				<InputArea
+					addTaskToList={(title, content) => {
+						this.addTaskToList(title, content);
+					}}
+				/>
+			</div>
+		);
+	}
 }
 
 export default App;

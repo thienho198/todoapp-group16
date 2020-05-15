@@ -3,11 +3,15 @@ import Task from '../../components/task/task';
 import classes from './listArea.module.css';
 
 export default class ListArea extends React.Component {
+	//#region constructor
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
 			<div style={{ width: '75%' }}>
 				<div style={{ marginTop: '20px', marginLeft: '10px' }}>
-					<label for="filter" style={{ marginRight: '5px' }}>
+					<label htmlFor="filter" style={{ marginRight: '5px' }}>
 						Filter:
 					</label>
 					<input
@@ -16,6 +20,8 @@ export default class ListArea extends React.Component {
 						id="filter"
 						style={{ border: 'none', borderBottom: '1px solid gray', paddingLeft: '5px' }}
 						placeholder="search for"
+						value={this.props.filterKey}
+						onChange={this.props.changeFilterKey}
 					/>
 				</div>
 				<div>
@@ -32,30 +38,11 @@ export default class ListArea extends React.Component {
 					<div style={{ paddingRight: '20px', paddingLeft: '10px' }}>
 						<div className="container">
 							<div className="row">
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
-								<div className="col-md-3 pr-2 pl-2 mb-2">
-									<Task title="Nộp deadline" content="Nộp trước 2 ngày đi" />
-								</div>
+								{this.props.listTasks.map((item, index) => (
+									<div key={index} className="col-md-3 pr-2 pl-2 mb-2">
+										<Task title={item.title} content={item.content} />
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
