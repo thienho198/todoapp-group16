@@ -73,7 +73,7 @@ export default class InputArea extends React.Component {
 					</div>
 				</div>
 				<p style={{ position: 'fixed', bottom: '0px', right: '0px', marginRight: '30px' }}>
-					Bản quyền thuộc về nhóm 16 (thienho,baochau,ngochien)
+					Bản quyền thuộc về nhóm 16 (thienho,thanhdat,ngochien)
 				</p>
 			</div>
 		);

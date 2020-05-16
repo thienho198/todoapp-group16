@@ -40,7 +40,11 @@ export default class ListArea extends React.Component {
 							<div className="row">
 								{this.props.listTasks.map((item, index) => (
 									<div key={index} className="col-md-3 pr-2 pl-2 mb-2">
-										<Task title={item.title} content={item.content} />
+										<Task
+											title={item.title}
+											content={item.content}
+											onChangeCheckBox={() => this.props.changeCheck(index)}
+										/>
 									</div>
 								))}
 							</div>

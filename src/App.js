@@ -14,7 +14,7 @@ class App extends React.Component {
 	}
 	//#region functions
 	addTaskToList(title, content) {
-		const task = { title: title, content: content };
+		const task = { title: title, content: content, checked: false };
 		this.setState((prevState) => {
 			const updateListTask = [ ...prevState.listTasks ];
 			updateListTask.unshift(task);
@@ -28,6 +28,14 @@ class App extends React.Component {
 			filterKey: text.target.value
 		});
 	};
+	changeCheck = (index) => {
+		const updateListTask = [ ...this.state.listTasks ];
+		const updateTask = { ...updateListTask[index] };
+
+		updateTask.checked = !updateTask.checked;
+		updateListTask[index] = updateTask;
+		this.setState({ listTasks: updateListTask });
+	};
 	//#region render
 	render() {
 		const listTasksRender =
@@ -37,6 +45,7 @@ class App extends React.Component {
 		return (
 			<div className={classes.Layout}>
 				<ListArea
+					changeCheck={(index) => this.changeCheck(index)}
 					listTasks={listTasksRender}
 					changeFilterKey={(text) => {
 						this.changeFilterKey(text);
