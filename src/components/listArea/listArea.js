@@ -44,6 +44,7 @@ export default class ListArea extends React.Component {
 											title={item.title}
 											content={item.content}
 											onChangeCheckBox={() => this.props.changeCheck(index)}
+											checked={item.checked}
 										/>
 									</div>
 								))}

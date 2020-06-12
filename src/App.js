@@ -36,8 +36,10 @@ class App extends React.Component {
 		updateListTask[index] = updateTask;
 		this.setState({ listTasks: updateListTask });
 	};
+
 	//#region render
 	render() {
+		console.log(this.state.listTasks);
 		const listTasksRender =
 			this.state.filterKey === ''
 				? this.state.listTasks
